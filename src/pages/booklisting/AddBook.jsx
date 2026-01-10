@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
 import { calculateBookValue } from '../../utils/aiValuation'; // Import logic
-import '../../CSS/AddBook.css';
+import '../../CSS/addBook.css';
 
 const AddBook = () => {
   const [loading, setLoading] = useState(false);
