@@ -1,28 +1,45 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
-import '../../CSS/home.css';
 import { Link } from 'react-router-dom';
+import '../../CSS/home.css';
+
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState(null);
+  const [userPoints, setUserPoints] = useState(0); // <--- FIXED: Added state for points
 
   useEffect(() => {
     fetchBooks();
-    getCurrentUser();
+    getCurrentUserAndPoints(); // <--- FIXED: Updated function name
   }, []);
 
-  const getCurrentUser = async () => {
+  // FIXED: Fetch User AND Points together
+  const getCurrentUserAndPoints = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (user) setUserId(user.id);
+    if (user) {
+      setUserId(user.id);
+      
+      // Fetch the points from the profile
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('points')
+        .eq('id', user.id)
+        .single();
+      
+      if (profile) {
+        setUserPoints(profile.points);
+      }
+    }
   };
 
   const fetchBooks = async () => {
-    // Fetch all books (newest first)
+    // Only show 'available' books (hide exchanged ones)
     const { data, error } = await supabase
       .from('books')
       .select('*')
+      .eq('status', 'available') 
       .order('created_at', { ascending: false });
 
     if (error) console.log('error', error);
@@ -40,10 +57,16 @@ const Home = () => {
       return;
     }
 
+    // FIXED: Now 'userPoints' exists, so this check works
+    const BOOK_COST = 10;
+    if (userPoints < BOOK_COST) {
+      alert(`❌ Not enough points! You have ${userPoints}, but need ${BOOK_COST}.`);
+      return;
+    }
+
     const confirmRequest = window.confirm("Do you want to request this book for exchange?");
     if (!confirmRequest) return;
 
-    // Create the request record
     const { error } = await supabase
       .from('requests')
       .insert([{ book_id: bookId, requester_id: userId }]);
@@ -51,11 +74,10 @@ const Home = () => {
     if (error) {
       alert("Error requesting book: " + error.message);
     } else {
-      alert("Request sent! The owner will be notified.");
+      alert("✅ Request sent! Points will be deducted when the owner accepts.");
     }
   };
 
-  // Filter books based on search
   const filteredBooks = books.filter(book => 
     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     book.author.toLowerCase().includes(searchTerm.toLowerCase())
@@ -63,7 +85,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {/* 1. Hero / Welcome Section */}
       <div className="hero-section">
         <h1>Find Your Next Great Read</h1>
         <p>Exchange books with people in your community.</p>
@@ -79,7 +100,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 2. Books Grid */}
       <div className="content-area">
         <h2>Available Books</h2>
         
@@ -87,39 +107,44 @@ const Home = () => {
           <p>Loading books...</p>
         ) : (
           <div className="books-grid">
-
             {filteredBooks.map((book) => (
-                <Link to={`/book/${book.id}`} className="card-link">
+              
+              /* FIXED: The 'key' is now on this outermost DIV, not inside */
               <div key={book.id} className="book-card">
-                {/* Image */}
-                <div className="card-image">
-                  {book.image_url ? (
-                    <img src={book.image_url} alt={book.title} />
-                  ) : (
-                    <div className="no-image">📚</div>
-                  )}
-                  <span className={`condition-tag ${book.condition}`}>
-                    {book.condition}
-                  </span>
-                </div>
+                
+                {/* Link for the Image */}
+                <Link to={`/book/${book.id}`} className="card-link">
+                  <div className="card-image">
+                    {book.image_url ? (
+                      <img src={book.image_url} alt={book.title} />
+                    ) : (
+                      <div className="no-image">📚</div>
+                    )}
+                    <span className={`condition-tag ${book.condition}`}>
+                      {book.condition}
+                    </span>
+                  </div>
+                </Link>
 
-                {/* Details */}
                 <div className="card-details">
-                  <h3>{book.title}</h3>
+                  {/* Link for the Title */}
+                  <Link to={`/book/${book.id}`} className="title-link">
+                    <h3>{book.title}</h3>
+                  </Link>
+                  
                   <p className="author">by {book.author}</p>
                   <p className="location">📍 {book.pickup_location}</p>
                   
-                  {/* Action Button */}
                   <button 
                     className="request-btn"
                     onClick={() => handleRequest(book.id, book.owner_id)}
-                    disabled={userId === book.owner_id} // Disable if it's my book
+                    disabled={userId === book.owner_id}
                   >
                     {userId === book.owner_id ? 'Your Listing' : 'Request Exchange'}
                   </button>
                 </div>
               </div>
-              </Link>
+
             ))}
           </div>
         )}

@@ -1,0 +1,53 @@
+.map-page-container {
+  display: flex;
+  height: calc(100vh - 70px); /* Full height minus navbar */
+  font-family: 'Inter', sans-serif;
+}
+
+.map-sidebar {
+  width: 350px;
+  padding: 20px;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  z-index: 500;
+  overflow-y: auto;
+}
+
+.map-view {
+  flex-grow: 1;
+  position: relative;
+}
+
+.toggle-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.toggle-btn.active { background: #dc2626; }
+
+.instruction { color: #dc2626; font-size: 14px; margin-top: 10px; font-weight: 500; }
+
+.point-form {
+  background: #f3f4f6;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: 1px solid #d1d5db;
+}
+
+.point-form input, .point-form textarea {
+  width: 100%; padding: 8px; margin-bottom: 10px;
+  border: 1px solid #9ca3af; border-radius: 4px;
+}
+
+.point-form button {
+  width: 100%; background: #059669; color: white;
+  padding: 8px; border: none; border-radius: 4px; cursor: pointer;
+}

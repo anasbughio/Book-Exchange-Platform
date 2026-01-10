@@ -9,6 +9,10 @@ import MyBooks from './pages/MyBooks'
 import Home from './pages/booklisting/Home'
 import BookDetails from './pages/booklisting/BookDetails'
 import Notifications from './pages/Notifications'
+import IncomingRequests from './pages/IncommingRequests'
+import BookHistory from './pages/BookHistory'
+import BuyPoints from './pages/BuyPoints'
+import ExchangeMap from './pages/ExchangeMap'
 
 
 function App() {
@@ -28,7 +32,10 @@ function App() {
     <Route path="/my-books" element={<MyBooks />} />
     <Route path="/book/:id" element={<BookDetails />} />
     <Route path="/notifications" element={<Notifications/>} />
-
+    <Route path="/requests" element={<IncomingRequests />} />
+<Route path="/history/:id" element={<BookHistory />} />
+<Route path="/buy-points" element={<BuyPoints />} />
+<Route path="/map" element={<ExchangeMap />} />
           {/* Add more private routes here later, e.g.:
               <Route path="/add-book" element={<AddBook />} /> 
           */}

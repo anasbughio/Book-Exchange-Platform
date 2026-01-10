@@ -12,11 +12,11 @@ const Home = () => {
   const fetchBooks = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("books")
-        .select("*")
-        .eq("status", "Available")
-        .order("created_at", { ascending: false });
+  const { data, error } = await supabase
+    .from('books')
+    .select('*')
+    .eq('status', 'available') // <--- ADD THIS LINE!
+    .order('created_at', { ascending: false });
 
       if (error) console.error("Error fetching books:", error.message);
       else setBooks(data);

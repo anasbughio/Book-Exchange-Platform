@@ -180,3 +180,19 @@
   color: #6b7280;
   padding: 40px;
 }
+/* Remove default link styles for the card */
+.card-link {
+  text-decoration: none;
+  color: inherit; /* Keeps the text color you set, not blue */
+  display: block; /* Ensures the link covers the whole area */
+}
+
+.title-link {
+  text-decoration: none;
+  color: #111827; /* Dark color for title */
+}
+
+.title-link:hover h3 {
+  color: #4f46e5; /* Turn purple on hover */
+  text-decoration: underline;
+}
