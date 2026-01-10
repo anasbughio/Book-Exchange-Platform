@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import '../css/navbar.css'; // Ensure path matches your folder (lowercase 'css')
+import '../CSS/navbar.css; // Ensure path matches your folder (lowercase 'css')
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
