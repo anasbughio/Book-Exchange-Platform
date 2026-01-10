@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import '../CSS/MyBooks.css';
+import '../CSS/mybooks.css';
 
 const MyBooks = () => {
   const [books, setBooks] = useState([]);
