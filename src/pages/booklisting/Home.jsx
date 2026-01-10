@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../..c/supabaseClient';
+import { supabase } from '../../supabaseClient';
 import '../../CSS/home.css';
 
 const Home = () => {
