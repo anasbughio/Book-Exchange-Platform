@@ -14,6 +14,7 @@ import BookHistory from './pages/BookHistory'
 import BuyPoints from './pages/BuyPoints'
 import ExchangeMap from './pages/ExchangeMap'
 import BookForum from './pages/forum/BookForum'
+import NotFound from './pages/NotFOund'
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
 <Route path="/buy-points" element={<BuyPoints />} />
 <Route path="/map" element={<ExchangeMap />} />
 <Route path="/forums" element={<BookForum />} />
+<Route path="*" element={<NotFound />} />
           {/* Add more private routes here later, e.g.:
               <Route path="/add-book" element={<AddBook />} /> 
           */}
