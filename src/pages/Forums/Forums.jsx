@@ -9,27 +9,20 @@ const Forums = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Fetch forums from Supabase
-  const fetchForums = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("forums")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) console.error("Error fetching forums:", error.message);
-      else setForums(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     fetchForums();
   }, []);
+
+  const fetchForums = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("forums")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (!error) setForums(data || []);
+    setLoading(false);
+  };
 
   const filteredForums = forums.filter((forum) =>
     forum.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -37,37 +30,49 @@ const Forums = () => {
 
   return (
     <div className="forums-container">
-      <div className="forums-banner">
-        <h1 className="forums-title">💬 Book Forums & Discussions</h1>
-        <p className="forums-subtitle">
-          Join discussions, share opinions, and explore chapter-wise debates.
+      {/* Header */}
+      <div className="forums-header">
+        <h1>Book Forums & Discussions</h1>
+        <p>
+          Discuss books, share interpretations, debate chapters, and help fellow
+          readers — anonymously if you like.
         </p>
       </div>
 
-      {/* Search Bar */}
+      {/* Search */}
       <div className="forums-search">
         <div className="search-wrapper">
           <input
             type="text"
-            placeholder="Search forums by title..."
+            placeholder="Search discussions..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
           />
           <span className="search-icon">🔍</span>
         </div>
       </div>
 
-      {/* Forum Threads */}
+      {/* Categories */}
+      <div className="forums-categories">
+        <span className="category active">All</span>
+        <span className="category">Reader Talks</span>
+        <span className="category">Chapter Debates</span>
+        <span className="category">Opinions</span>
+        <span className="category">Guides</span>
+      </div>
+
+      {/* Forum List */}
       <div className="forums-list">
         {loading ? (
-          <p>Loading forums...</p>
-        ) : filteredForums.length > 0 ? (
+          <div className="loading">Loading discussions...</div>
+        ) : filteredForums.length ? (
           filteredForums.map((forum) => (
             <ForumCard key={forum.id} forum={forum} />
           ))
         ) : (
-          <p>No forums found.</p>
+          <div className="empty-state">
+            No discussions found. Be the first to start one 📖
+          </div>
         )}
       </div>
     </div>

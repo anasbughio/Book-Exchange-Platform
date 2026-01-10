@@ -1,69 +1,123 @@
 /* src/pages/Forums/Forums.css */
 
 .forums-container {
-  padding: 40px 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
+  padding: 40px 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.forums-banner {
+/* Header */
+.forums-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
-.forums-title {
+.forums-header h1 {
   font-size: 42px;
-  font-weight: 700;
-  color: #2c3e50;
+  font-weight: 800;
+  color: #4f46e5;
   margin-bottom: 10px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.forums-subtitle {
-  font-size: 18px;
-  color: #7f8c8d;
+.forums-header p {
+  color: #6b7280;
+  font-size: 17px;
+  max-width: 650px;
+  margin: auto;
 }
 
+/* Search Bar */
 .forums-search {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .search-wrapper {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
 }
 
-.search-input {
+.search-wrapper input {
   width: 100%;
-  padding: 12px 40px 12px 20px; /* right padding for icon */
+  padding: 14px 45px 14px 20px;
+  border-radius: 30px;
+  border: 1px solid #d1d5db;
   font-size: 16px;
-  border-radius: 25px;
-  border: 1px solid #ccc;
-  outline: none;
   transition: 0.3s;
 }
 
-.search-input:focus {
-  border-color: #2980b9;
-  box-shadow: 0 0 8px rgba(41, 128, 185, 0.3);
+.search-wrapper input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 10px rgba(79, 70, 229, 0.25);
 }
 
 .search-icon {
   position: absolute;
-  right: -40px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 18px;
-  color: #7f8c8d;
-  pointer-events: none;
+  opacity: 0.6;
 }
 
+/* Categories */
+.forums-categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.category {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category:hover,
+.category.active {
+  background: #4f46e5;
+  color: white;
+}
+
+/* Forum List */
 .forums-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
+}
+
+/* States */
+.loading {
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 16px;
+  padding: 40px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .forums-header h1 {
+    font-size: 32px;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+  }
 }
