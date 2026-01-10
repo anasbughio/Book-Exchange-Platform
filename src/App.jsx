@@ -13,6 +13,7 @@ import IncomingRequests from './pages/IncommingRequests'
 import BookHistory from './pages/BookHistory'
 import BuyPoints from './pages/BuyPoints'
 import ExchangeMap from './pages/ExchangeMap'
+import BookForum from './pages/forum/BookForum'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
 <Route path="/history/:id" element={<BookHistory />} />
 <Route path="/buy-points" element={<BuyPoints />} />
 <Route path="/map" element={<ExchangeMap />} />
+<Route path="/forums" element={<BookForum />} />
           {/* Add more private routes here later, e.g.:
               <Route path="/add-book" element={<AddBook />} /> 
           */}

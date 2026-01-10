@@ -1,0 +1,157 @@
+.forum-container {
+  display: flex;
+  height: 90vh; /* Full screen height minus header */
+  background-color: #f8fafc;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-left: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+}
+
+/* Sidebar */
+.topics-sidebar {
+  width: 250px;
+  background: white;
+  padding: 20px;
+  border-right: 1px solid #e2e8f0;
+}
+
+.topics-sidebar h3 {
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.topics-sidebar li {
+  list-style: none;
+  padding: 10px 12px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #334155;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.topics-sidebar li:hover {
+  background-color: #f1f5f9;
+}
+
+.topics-sidebar li.active {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+/* Chat Area */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  padding: 15px 25px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #0f172a;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.posts-feed {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #f8fafc;
+}
+
+/* Post Bubbles */
+.post-bubble {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  max-width: 80%;
+  align-self: flex-start;
+  border: 1px solid #e2e8f0;
+}
+
+.post-bubble.anon {
+  background-color: #f0fdf4; /* Light green for anon */
+  border-color: #bbf7d0;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.post-meta strong {
+  color: #475569;
+}
+
+/* Input Form */
+.post-form {
+  padding: 20px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+
+.controls {
+  margin-bottom: 10px;
+}
+
+.anon-toggle {
+  font-size: 0.85rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.input-group button {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.input-group button:disabled {
+  background-color: #94a3b8;
+}
