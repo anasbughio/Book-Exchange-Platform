@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import '../CSS/bookHistory.css'; // We will create this next
+import '../CSS/bookhistory.css'; // We will create this next
 
 const BookHistory = () => {
   const { id } = useParams(); // Book ID from URL
