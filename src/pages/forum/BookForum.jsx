@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
 import { checkContentSafety } from '../../utils/abuseDetection'; // Import AI logic
-import '../../css/forum.css';
+import '../../CSS/forum.css';
 
 const BookForum = () => {
   const [activeBook, setActiveBook] = useState('The Great Gatsby'); // Default topic
