@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import '../../CSS/home.css';
-
+import { Link } from 'react-router-dom';
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -87,7 +87,9 @@ const Home = () => {
           <p>Loading books...</p>
         ) : (
           <div className="books-grid">
+
             {filteredBooks.map((book) => (
+                <Link to={`/book/${book.id}`} className="card-link">
               <div key={book.id} className="book-card">
                 {/* Image */}
                 <div className="card-image">
@@ -117,6 +119,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         )}

@@ -7,6 +7,8 @@ import AddBook from './pages/booklisting/AddBook'
 import Navbar from './components/Navbar'
 import MyBooks from './pages/MyBooks'
 import Home from './pages/booklisting/Home'
+import BookDetails from './pages/booklisting/BookDetails'
+import Notifications from './pages/Notifications'
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/" element={<Home />} />
     <Route path="/add-book" element={<AddBook />} />
     <Route path="/my-books" element={<MyBooks />} />
+    <Route path="/book/:id" element={<BookDetails />} />
+    <Route path="/notifications" element={<Notifications/>} />
 
           {/* Add more private routes here later, e.g.:
               <Route path="/add-book" element={<AddBook />} /> 
