@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import '../CSS/notfound.css';
 
-const NotFound = () => {
+const NotFOund = () => {
   const navigate = useNavigate();
 
   return (
@@ -31,4 +31,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFOund;
