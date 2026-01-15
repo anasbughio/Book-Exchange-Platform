@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import '../CSS/buypoints.css';
+import '../CSS/buyPoints.css';
 
 const BuyPoints = () => {
   const [loading, setLoading] = useState(false);
